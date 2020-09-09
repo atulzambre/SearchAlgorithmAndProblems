@@ -11,33 +11,36 @@ import java.util.Arrays;
 
 public class MedianTwoArrayProblem {
     public static void main(String[] args) {
-        int ar1[] = {1, 12, 15, 26, 38};
-        int ar2[] = {2, 13, 17, 30, 45};
+        int ar1[] = {1, 2};
+        int ar2[] = {3,4};
 
-        int mergedArray[]=new int[ar1.length*2];
+        int mergedArray[]=new int[ar1.length+ar2.length];
         for(int i=0;i<ar1.length;i++){
             mergedArray[i]=ar1[i];
         }
-        for(int i=0;i<ar1.length;i++){
+        for(int i=0;i<ar2.length;i++){
             mergedArray[ar1.length+i]=ar2[i];
         }
 
-        int bubbleSoreted[]=bubbleSort(mergedArray);
-        System.out.println(Arrays.toString(bubbleSoreted));
+//        int bubbleSoreted[]=bubbleSort(mergedArray);
+        int bubbleSoreted;
+        Arrays.sort(mergedArray);
+        System.out.println(Arrays.toString(mergedArray));
 
-        findMedian(bubbleSoreted);
+        System.out.println(findMedian(mergedArray));
     }
 
-    private static void findMedian(int[] bubbleSoreted) {
+    private static double findMedian(int[] bubbleSoreted) {
+        double mid;
         if(bubbleSoreted.length%2==0){
-            int mid=0 + (bubbleSoreted.length-1)/2;
+            int pivot=bubbleSoreted.length/2;
 
-            System.out.println("Median is :"+(bubbleSoreted[mid]+bubbleSoreted[mid+1])/2);
+             mid=(double)(bubbleSoreted[pivot-1]+bubbleSoreted[pivot])/2;
         }
         else{
-            int mid=0 + (bubbleSoreted.length-1)/2;
-            System.out.println("Median is :"+bubbleSoreted[mid]);
+            mid= bubbleSoreted[(bubbleSoreted.length-1)/2];
         }
+        return mid;
     }
 
     private static int[] bubbleSort(int[] mergedArray) {
@@ -52,4 +55,6 @@ public class MedianTwoArrayProblem {
         }
         return mergedArray;
     }
+
+
 }
